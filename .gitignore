@@ -1,0 +1,6 @@
+lib
+node_modules
+db
+cert.crt
+cert.key
+config.json
