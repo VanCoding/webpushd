@@ -11,6 +11,8 @@ var database = null;
 
 var app = new koa();
 app.use(async function(ctx,next){
+	console.log("request",ctx.method,ctx.path);
+	ctx.set("Access-Control-Allow-Origin","*")
 	ctx.config = config;
 	ctx.db = mongoose.connection;
 	await next();
@@ -25,7 +27,7 @@ var server = http2.createServer({
 (async function(){
 	await mongoose.connect("mongodb://"+config.db);
 	installModel(mongoose.connection);
-	server.listen(443);
+	server.listen(config.port);
 	console.log("successfully started");
 })().catch(function(err){
 	console.log(err);

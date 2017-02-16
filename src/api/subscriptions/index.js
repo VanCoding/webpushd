@@ -13,15 +13,15 @@ var senders = {};
 
 module.exports = compose([
 	async function(ctx, next){
-		ctx.subsribers = {};
-		ctx.senders = {};
+		ctx.subscribers = subscribers;
+		ctx.senders = senders;
 		await next();
 	},
 	router
 		.get("/:subscription",require("./get"))
-		.all("/:subscription/*",async function(ctx){
+		.all("/:subscription/*",async function(ctx,next){
 			var prev = ctx.path;
-			ctx.path = ctx.path.slice(("/"+ctx.params.project+"/reservations").length);
+			ctx.path = ctx.path.slice(("/"+ctx.params.subscription).length);
 			await sub(ctx,async function(){
 				ctx.path = prev;
 				await next();

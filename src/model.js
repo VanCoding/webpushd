@@ -5,16 +5,15 @@ var Mixed = mongoose.Schema.Types.Mixed;
 
 module.exports = function(db){
 	db.Subscription = db.model("subscriptions",{
-		_id: ObjectId
 	});
     db.Receipt = db.model("receipts",{
-        _id: ObjectId,
 		subscription: {type: ObjectId, ref: "subscriptions"}
 	});
-	db.Message = db.model("messages",{
-		_id: ObjectId,
+	var Message = new Schema({
 		subscription: {type: ObjectId, ref: "subscriptions"},
-		receipt: {type: ObjectId, ref: "receipts"},
+		ttl: Number,
 		data: String
 	});
+	Message.index({ttl:1},{expireAfterSeconds:0});
+	db.Message = db.model("messages",Message);
 }

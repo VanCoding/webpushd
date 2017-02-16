@@ -3,5 +3,6 @@ module.exports = async function(ctx){
 	if(message == null) ctx.throw(404);
 	var sender = ctx.senders[ctx.params.subscription];
 	if(sender) sender.sendConfirmation(message);
-	await msg.remove();
+	await message.remove();
+	console.log("deleted")
 }

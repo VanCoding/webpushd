@@ -2,7 +2,7 @@
   "name": "webpushd",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,7 +17,8 @@
     "koa-compress": "^2.0.0",
     "koa-mount": "^2.0.0",
     "koa-router": "^7.0.1",
-    "mongoose": "^4.6.1"
+    "mongoose": "^4.6.1",
+    "raw-body": "^2.2.0"
   },
   "devDependencies": {
     "babel-plugin-syntax-async-functions": "^6.13.0",
